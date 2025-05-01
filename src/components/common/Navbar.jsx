@@ -39,7 +39,7 @@ function Navbar() {
         if (!searchInput.trim()) return;
 
         try {
-            const response = await axios.get(`http://localhost:5000/products/searchProducts?name=${searchInput}`)
+            const response = await axios.get(`https://ecommercebackendapp-tvhk.onrender.com/products/searchProducts?name=${searchInput}`)
             const products = response.data.products
             console.log("Fetched Products:", products)
 
