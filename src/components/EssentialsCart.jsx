@@ -1,24 +1,24 @@
-import { useLocation } from "react-router-dom";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import useEssentialsState from "./EssentialsState";
-import { useState , useEffect } from "react";
-import auth from "../config/firebase";
-import { useCart } from "./CartContext";
-import { onAuthStateChanged } from "firebase/auth";
+import { useLocation } from "react-router-dom"
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
+import useEssentialsState from "./EssentialsState"
+import { useState , useEffect } from "react"
+import auth from "../config/firebase"
+import { useCart } from "./CartContext"
+import { onAuthStateChanged } from "firebase/auth"
 function EssentialsCart() {
     const location = useLocation();
     const navigate = useNavigate()
   //  const items = location.state || []
   const items = Array.isArray(location.state) ? location.state : []
-    console.log("Items:"+items);
+    console.log("Items:"+items)
     const renderStars = (rating) => {
         const fullStars = Math.floor(rating); // Full stars
-        const halfStar = rating % 1 === 0.5 ? "½" : ""; // Half star if applicable
-        return "★".repeat(fullStars) + halfStar;
-    };
+        const halfStar = rating % 1 === 0.5 ? "½" : "" // Half star if applicable
+        return "★".repeat(fullStars) + halfStar
+    }
     
-    const { selectedCategoryProducts, setSelectedCategoryProducts } = useEssentialsState();
+    const { selectedCategoryProducts, setSelectedCategoryProducts } = useEssentialsState()
     const handleItemClick = async (categoryTitle) =>{
         try {
             const response = await axios.get(`https://ecommercebackendapp-tvhk.onrender.com/products/getProductById/${categoryTitle}`)
@@ -28,34 +28,34 @@ function EssentialsCart() {
     
                 // Wait for state update using a short timeout before navigating
                 setTimeout(() => {
-                    navigate("/productPage", { state: response.data.product });
+                    navigate("/productPage", { state: response.data.product })
                 }, 100);
             } else {
-                console.warn("No products found for category:", categoryTitle);
+                console.warn("No products found for category:", categoryTitle)
             }
         } catch (error) {
-            console.error("Error fetching products:", error.message);
+            console.error("Error fetching products:", error.message)
         }
     }
 
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null)
     useEffect(() => {
         onAuthStateChanged(auth, (loggedInUser) => {
             setUser(loggedInUser);
         });
     }, []);
 
-    const { cartCount, setCartCount, addToCart } = useCart();
+    const { cartCount, setCartCount, addToCart } = useCart()
 
     const handleAddToCart = (item) => {
         if (user) {
             setCartCount((prev) => prev + 1); // ✅ Increment count
             addToCart(item); // ✅ Only add the clicked item
-            navigate("/cart");
+            navigate("/cart")
         } else {
-            navigate("/login");
+            navigate("/login")
         }
-    };
+    }
 
     return (
         <div>

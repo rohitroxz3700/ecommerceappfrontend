@@ -5,33 +5,33 @@ import auth from "../config/firebase";
 import { useCart } from "./CartContext";
 
 function ProductPage() {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const items = location.state || {}; // Ensure it's an object
-    console.log(items);
+    const location = useLocation()
+    const navigate = useNavigate()
+    const items = location.state || {} // Ensure it's an object
+    console.log(items)
 
     const renderStars = (rating) => {
         const fullStars = Math.floor(rating); // Full stars
-        const halfStar = rating % 1 === 0.5 ? "½" : ""; // Half star if applicable
+        const halfStar = rating % 1 === 0.5 ? "½" : "" // Half star if applicable
         return "★".repeat(fullStars) + halfStar;
     };
 
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null)
     useEffect(() => {
         onAuthStateChanged(auth, (loggedInUser) => {
-            setUser(loggedInUser);
-        });
-    }, []);
+            setUser(loggedInUser)
+        })
+    }, [])
 
-    const { cartCount, setCartCount, addToCart } = useCart(); // Avoid duplicate calls
+    const { cartCount, setCartCount, addToCart } = useCart() // Avoid duplicate calls
 
     const handleAddToCart = () => {
         if (user) {
             setCartCount((prev) => prev + 1); // Functional update for safety
-            addToCart(items);
+            addToCart(items)
             navigate("/cart")
         } else {
-            navigate("/login");
+            navigate("/login")
         }
     };
 

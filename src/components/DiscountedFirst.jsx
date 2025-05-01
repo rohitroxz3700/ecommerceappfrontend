@@ -49,13 +49,13 @@ function DiscountedFirst() {
     
                 // Wait for state update using a short timeout before navigating
                 setTimeout(() => {
-                    navigate("/productPage", { state: response.data.product });
+                    navigate("/productPage", { state: response.data.product })
                 }, 100);
             } else {
-                console.warn("No products found for category:", categoryTitle);
+                console.warn("No products found for category:", categoryTitle)
             }
         } catch (error) {
-            console.error("Error fetching products:", error.message);
+            console.error("Error fetching products:", error.message)
         }
     };
 

@@ -1,6 +1,6 @@
 import { createContext, useState, useContext } from "react";
 
-const CartContext = createContext();
+const CartContext = createContext()
 
 export function CartProvider({ children }) {
     const [cartCount, setCartCount] = useState(0)
@@ -27,5 +27,5 @@ export function CartProvider({ children }) {
 }
 
 export function useCart() {
-    return useContext(CartContext);
+    return useContext(CartContext)
 }

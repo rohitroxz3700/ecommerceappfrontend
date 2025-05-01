@@ -39,17 +39,17 @@ function Navbar() {
         if (!searchInput.trim()) return;
 
         try {
-            const response = await axios.get(`http://localhost:5000/products/searchProducts?name=${searchInput}`);
-            const products = response.data.products;
-            console.log("Fetched Products:", products);
+            const response = await axios.get(`http://localhost:5000/products/searchProducts?name=${searchInput}`)
+            const products = response.data.products
+            console.log("Fetched Products:", products)
 
             if (products.length > 0) {
-                navigate("/essentialsCart", { state: products });
+                navigate("/essentialsCart", { state: products })
             } else {
-                alert("No matching products found.");
+                alert("No matching products found.")
             }
         } catch (error) {
-            console.error("Search error:", error);
+            console.error("Search error:", error)
         }
     };
 

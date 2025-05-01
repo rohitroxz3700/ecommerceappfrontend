@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from "react"
 
 const useEssentialsState = () => {
     const [selectedCategoryProducts, setSelectedCategoryProducts] = useState([]);
-    return { selectedCategoryProducts, setSelectedCategoryProducts };
+    return { selectedCategoryProducts, setSelectedCategoryProducts }
 };
 
-export default useEssentialsState;
+export default useEssentialsState

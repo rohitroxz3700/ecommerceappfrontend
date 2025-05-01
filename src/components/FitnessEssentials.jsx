@@ -2,9 +2,9 @@ import handgrip from "../assets/handgrip.jpg"
 import resistance from "../assets/resistance_bands.jpg"
 import wheyShaker from "../assets/whey_shaker.jpg"
 import wristWrap from "../assets/wrist_wrap.jpg"
-import { useNavigate } from 'react-router-dom';
-import axios from "axios";
-import useEssentialsState from "./EssentialsState";
+import { useNavigate } from 'react-router-dom'
+import axios from "axios"
+import useEssentialsState from "./EssentialsState"
 function FitnessEssentials() {
     const navigate = useNavigate()
     const fitnessEssentials = [
@@ -25,13 +25,13 @@ function FitnessEssentials() {
     
                 // Wait for state update using a short timeout before navigating
                 setTimeout(() => {
-                    navigate("/productPage", { state: response.data.product });
-                }, 100);
+                    navigate("/productPage", { state: response.data.product })
+                }, 100)
             } else {
-                console.warn("No products found for category:", categoryTitle);
+                console.warn("No products found for category:", categoryTitle)
             }
         } catch (error) {
-            console.error("Error fetching products:", error.message);
+            console.error("Error fetching products:", error.message)
         }
     }
 

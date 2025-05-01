@@ -11,7 +11,7 @@ import boultHP from "../assets/boult_headphones.jpg"
 import noiseHP from "../assets/noise_headphones.jpg"
 import zebronicsHP from "../assets/zebronics_headphones.jpg"
 import { useState, useEffect } from "react"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 import EssentialsCart from "./EssentialsCart"
 import useEssentialsState from "./EssentialsState"
@@ -57,32 +57,32 @@ function Essentials() {
     ]
 
 
-    const { selectedCategoryProducts, setSelectedCategoryProducts } = useEssentialsState();
+    const { selectedCategoryProducts, setSelectedCategoryProducts } = useEssentialsState()
     const handleItemClick = async (categoryTitle) => {
         try {
             const response = await axios.get("https://ecommercebackendapp-tvhk.onrender.com/products/getProductsByCategory", {
                 params: { category: categoryTitle },
-            });
+            })
     
             if (response.data.products.length > 0) {
-                setSelectedCategoryProducts(response.data.products);
+                setSelectedCategoryProducts(response.data.products)
     
                 // Wait for state update using a short timeout before navigating
                 setTimeout(() => {
-                    navigate("/essentialsCart", { state: response.data.products });
-                }, 100);
+                    navigate("/essentialsCart", { state: response.data.products })
+                }, 100)
             } else {
-                console.warn("No products found for category:", categoryTitle);
+                console.warn("No products found for category:", categoryTitle)
             }
         } catch (error) {
-            console.error("Error fetching products:", error.message);
+            console.error("Error fetching products:", error.message)
         }
     };
 
 
     useEffect(() => {
-        console.log("Updated selectedCategoryProducts:", selectedCategoryProducts);
-    }, [selectedCategoryProducts]);
+        console.log("Updated selectedCategoryProducts:", selectedCategoryProducts)
+    }, [selectedCategoryProducts])
     
     return (
         <div className="flex flex-wrap gap-7">

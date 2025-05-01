@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import auth from '../config/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import auth from '../config/firebase'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 function Signup() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [error, setError] = useState('');
-    const navigate = useNavigate(); // Hook from React Router for navigation
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [error, setError] = useState('')
+    const navigate = useNavigate() // Hook from React Router for navigation
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         // Check if the passwords match
         if (password !== confirmPassword) {
-            setError('Passwords do not match');
+            setError('Passwords do not match')
             return;
         }
 
@@ -25,10 +25,10 @@ function Signup() {
         })
 
         // Simulate user registration process
-        console.log('User registered:', { email, password });
+        console.log('User registered:', { email, password })
         // After registration, redirect to the login page
-        navigate('/login'); // Replace '/login' with your login page route
-    };
+        navigate('/login') // Replace '/login' with your login page route
+    }
 
     return (
         <div className="flex justify-center items-center h-screen bg-gray-100">

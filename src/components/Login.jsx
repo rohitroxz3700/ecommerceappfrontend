@@ -4,8 +4,8 @@ import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import auth from '../config/firebase';
 function Login() {
     const navigate = useNavigate()
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -18,7 +18,7 @@ function Login() {
     }, []);
 
     const handleLogin = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         signInWithEmailAndPassword(auth,email,password).then((res)=>{
             navigate('/')
@@ -26,11 +26,11 @@ function Login() {
             console.log("Error signing in")
         })
         // Simulate login process
-        console.log('User logged in:', { email, password });
+        console.log('User logged in:', { email, password })
 
         // Redirect to homepage/dashboard after login
         // Replace '/home' with your homepage route
-        navigate('/home');
+        navigate('/home')
     };
 
     return (
